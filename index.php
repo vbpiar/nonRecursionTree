@@ -20,12 +20,12 @@ function makeTree(&$input_array) {
     ];
 
     foreach ($input_array as &$category) {
-        $category['catalog'] = [];
-        $map[$category['id']] = &$category;
+        $category['catalog'] = []; //create array for children that we append later
+        $map[$category['id']] = &$category; // add reference to created category
     }
 
     foreach ($input_array as &$category) {
-        $map[$category['parent_id']]['catalog'][] = &$category;
+        $map[$category['parent_id']]['catalog'][] = &$category; // add reference all children to created category 
     }
     return $map[0]['catalog'];
 
